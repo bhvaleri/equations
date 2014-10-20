@@ -38,4 +38,27 @@
     ]);
   }, 1000);
 
+
+  nextJsep = function (tree) {
+    if (tree.type == "Literal") {
+      //huh?
+      return tree.raw;
+    }
+    else if (tree.type == "BinaryExpression") {
+      if (tree.left.type == "Literal") {
+        if (tree.right.type == "Literal") {
+          jsep(eval(tree.left.raw+tree.operator+tree.right.raw).toString());
+        }
+        else {
+          return ;
+        }
+      } else {
+        return ;
+      }
+    }
+    else {
+      console.log("unsupported type");
+    }
+
+  }
 })();
